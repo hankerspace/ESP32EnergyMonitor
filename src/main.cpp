@@ -48,6 +48,8 @@ void setup()
   pinMode(ADC_INPUT4, INPUT);
   pinMode(V_INPUT, INPUT);
   pinMode(ADC_OUTPUT_LED, OUTPUT);
+  ledcSetup(LEDC_CHANNEL_0, LEDC_BASE_FREQ, LEDC_TIMER_13_BIT);
+  ledcAttachPin(ADC_OUTPUT_LED, LEDC_CHANNEL_0);
 
   emon1.voltage(V_INPUT, 180, 1.7);             // Current: input pin, calibration.
   emon1.current(ADC_INPUT1, 28);             // Current: input pin, calibration.

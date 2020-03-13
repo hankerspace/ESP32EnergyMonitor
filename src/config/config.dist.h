@@ -28,6 +28,13 @@
 
 #define ADC_OUTPUT_LED 25
 
+// use first channel of 16 channels (started from zero)
+#define LEDC_CHANNEL_0     0
+// use 13 bit precission for LEDC timer
+#define LEDC_TIMER_13_BIT  13
+// use 5000 Hz as a LEDC base frequency
+#define LEDC_BASE_FREQ     5000
+
 /**
  * The voltage of your home, used to calculate the wattage.
  * Try setting this as accurately as possible.
