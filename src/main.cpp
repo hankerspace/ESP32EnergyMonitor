@@ -11,6 +11,7 @@
 #include "tasks/fetch-time-from-ntp.h"
 #include "tasks/mqtt-aws.h"
 #include "tasks/wifi-connection.h"
+#include "tasks/reroute-overflow.h"
 #include "tasks/wifi-update-signalstrength.h"
 #include "tasks/measure-electricity.h"
 #include "tasks/updateDisplay.h"
@@ -46,6 +47,7 @@ void setup()
   pinMode(ADC_INPUT3, INPUT);
   pinMode(ADC_INPUT4, INPUT);
   pinMode(V_INPUT, INPUT);
+  pinMode(ADC_OUTPUT_LED, OUTPUT);
 
   emon1.voltage(V_INPUT, 180, 1.7);             // Current: input pin, calibration.
   emon1.current(ADC_INPUT1, 28);             // Current: input pin, calibration.
@@ -102,6 +104,18 @@ void setup()
     10000,                  // Stack size (bytes)
     NULL,                   // Parameter
     4,                      // Task priority
+    NULL                    // Task handle
+  );
+
+  // ----------------------------------------------------------------
+  // Task: reroute overflow
+  // ----------------------------------------------------------------
+  xTaskCreate(
+    rerouteOverflow,
+    "Reroute overflow",  // Task name
+    1000,                  // Stack size (bytes)
+    NULL,                   // Parameter
+    7,                      // Task priority
     NULL                    // Task handle
   );
 

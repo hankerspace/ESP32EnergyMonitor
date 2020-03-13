@@ -26,6 +26,8 @@
 
 #define V_INPUT 39
 
+#define ADC_OUTPUT_LED 25
+
 /**
  * The voltage of your home, used to calculate the wattage.
  * Try setting this as accurately as possible.
